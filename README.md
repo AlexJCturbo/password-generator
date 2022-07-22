@@ -34,4 +34,5 @@ THEN the password is either displayed in an alert or written to the page
 ## Links to the Webpage and the Repository:
 
 [Password Website](https://alexjcturbo.github.io/password-generator/)
+
 [GitHub Repository](https://github.com/AlexJCturbo/password-generator)

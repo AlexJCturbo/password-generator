@@ -8,12 +8,13 @@ var lowLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialChar = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
 
-var lengthPassword = 0;
-var upLetterSelection = undefined;
-var lowLetterSelection = undefined;
-var numbersSelection = undefined;
-var specialCharSelection = undefined;
+var lengthPassword;
+var upLetterSelection;
+var lowLetterSelection;
+var numbersSelection;
+var specialCharSelection;
 var criteriaSelection = [];
+var newPassword = "";
 
 // Defining the length of the password
 function lengthSelection() {
@@ -22,68 +23,46 @@ function lengthSelection() {
   if (lengthPassword < 8 || lengthPassword > 128){
     alert("The length has to be between 8 and 128 characters");
     return false;
-  }
-  else if (isNaN(lengthPassword)) {
+  }else if (isNaN(lengthPassword)) {
     alert("Select only numbers between 8 and 128.")
     return false;
-  }
+  }else {lengthPassword = parseInt(lengthPassword);
+  } 
   return lengthPassword;
 }
 
 // Defining if the user requires upper cases, lower cases, numbers and/or special characters 
-function upLetterCriteria() {
-  upLetterSelection = confirm("Do you require upper case letters?");{
+//function upLetterCriteria() {
+
+function confirmCriteria() {
+  if (upLetterSelection = confirm("Do you require upper case letters?")){
     //criteriaSelection = criteriaSelection.append(upLetter); not working
     //criteriaSelection = criteriaSelection.push(upLetter); not working
     criteriaSelection = criteriaSelection.concat(upLetter);
   }
-  return true; 
-}
+//  return true; 
+//}
 
-function lowLetterCriteria() {
+//function lowLetterCriteria() {
   if (lowLetterSelection = confirm("Do you require lower case letters?")){
     criteriaSelection = criteriaSelection.concat(lowLetter);
   }
-  return true;
-}
+//  return true;
+//}
 
-function numbersCriteria() {
+//function numbersCriteria() {
   if (numbersSelection = confirm("Do you require numbers?")){
     criteriaSelection = criteriaSelection.concat(numbers);
   }
-  return true;
-}
+//  return true;
+//}
 
-function specialCharCriteria() {
+//function specialCharCriteria() {
   if (specialCharSelection = confirm("Do you require special characters?")){
     criteriaSelection = criteriaSelection.concat(specialChar);
   }
-  return true;
+  return confirmCriteria;
 }
-
-
-
-
-
-
-
-
-
-// function promptQuestions(){
-//    var upLetterRequired(){
-//      if (confirm(upLetterRequired)){
-//        criteriaSelected = criteriaSelected.concat(upLetter);
-//      }
-//    }
-
-// var lowLetterRequired = prompt ("Do you require lower case letters?")
-// var numbersRequired = prompt ("Do you require numbers?")
-// var specialCharRequired = prompt ("Do you require special characters?")
-
-//var upLetterRequired = prompt ("Do you require upper case letters?")
-//var lowLetterRequired = prompt ("Do you require lower case letters?")
-//var numbersRequired = prompt ("Do you require numbers?")
-//var specialCharRequired = prompt ("Do you require special characters?")
 
 //fucntion shuffle(){
 //  for (var i=length-1; i>0; i--){
@@ -91,28 +70,29 @@ function specialCharCriteria() {
 //  }
 //}
 
-
-
+// Generating random number to get the different characters
 function generatePassword() {
-
+//  var newPassword;
+  for ( var i = 0; i < lengthPassword; i++){
+//    var newPassword = "";
+    var ranNumGeneration = Math.floor(Math.random() * lengthPassword);
+    newPassword = newPassword + criteriaSelection[ranNumGeneration];
+  }
+  return newPassword;
 }
-
-
-
-
-
-
 
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  var promptsCriteria = confirmCriteria()
+  if (promptsCriteria) {
 
-  passwordText.value = password;
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+
+    passwordText.value = password;
+  }
 }
-
-
 
 
 // Add event listener to generate button

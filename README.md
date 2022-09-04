@@ -1,7 +1,6 @@
-# 03 JavaScript: Password Generator
+# JavaScript: Password Generator
 
 Create an application that generates a random password based on user-selected criteria. The app runs in the browser and features dynamically updated HTML and CSS powered by your JavaScript code. It has a clean and polished user interface and is responsive, which ensures that it adapts to multiple screen sizes.
-
 
 ## User Story
 
@@ -30,6 +29,9 @@ THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
+This password generator complies with the acceptance criteria.
+The user has to select the length (between 8 and 128 characters), as well as the required type of characters. Once the selection is made, the password is displayed in the webpage.
+
 
 ## Links to the Webpage and the Repository:
 

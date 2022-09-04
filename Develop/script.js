@@ -244,8 +244,8 @@ function writePassword() {
   //Runnign the functions
   lengthSelection();
   typeCharacterSelection();
-  
-  var passwordSelection = generatePassword();                 //SOME BUGS
+
+  var passwordSelection = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = passwordSelection;

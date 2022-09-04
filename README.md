@@ -29,7 +29,7 @@ THEN a password is generated that matches the selected criteria
 WHEN the password is generated
 THEN the password is either displayed in an alert or written to the page
 ```
-This password generator complies with the acceptance criteria.
+This password generator complies with the described acceptance criteria.
 The user has to select the length (between 8 and 128 characters), as well as the required type of characters. Once the selection is made, the password is displayed in the webpage.
 
 

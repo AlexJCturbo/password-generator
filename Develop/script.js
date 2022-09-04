@@ -13,12 +13,8 @@ var requireNumbers;
 var requireSpecChar;
 
 var passwordLength = 0;
-//var numberCharacterTypes = 0;
 var selectionTypeChar = [];
-var countTrueSelections = 0;
-let findTrueResponses;
 let allIndexes = [];
-let addCharacters = 0;
 let password;
 let passwordSelection;
 
@@ -42,7 +38,6 @@ let lengthSelection = function() {
     lengthSelection();
   }
   else {
-    //lengthSelection = passwordLength;
     console.log('Selected password length: ' + passwordLength);
   }
 }
@@ -52,9 +47,7 @@ let typeCharacterSelection = function() {
   //Require upper case
   requireUpperCase = window.confirm('Do you require upper case letters?')
   if (requireUpperCase){
-    //requireUpperCase = upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
     console.log('User requires upper case: ' + requireUpperCase);
-    //numberCharacterTypes = numberCharacterTypes + 1;
   } else {
     console.log('User requires upper case: ' + requireUpperCase);
   }
@@ -62,9 +55,7 @@ let typeCharacterSelection = function() {
   //Require lower case
   requireLowerCase = window.confirm('Do you require lower case letters?')
   if (requireLowerCase){
-    //requireLowerCase = lowerCaseLetters[Math.floor(Math.random()*(lowerCaseLetters.length))];
     console.log('User requires lower case: ' + requireLowerCase);
-    //numberCharacterTypes = numberCharacterTypes + 1;
   } else {
     console.log('User requires lower case: ' + requireLowerCase);
   }
@@ -72,9 +63,7 @@ let typeCharacterSelection = function() {
   //Require numbers
   requireNumbers = window.confirm('Do you require numbers?')
   if (requireNumbers){
-    //requireNumbers = numbers[Math.floor(Math.random()*(numbers.length))];
     console.log('User requires numbers: ' + requireNumbers);
-    //numberCharacterTypes = numberCharacterTypes + 1;
   } else {
     console.log('User requires numbers: ' + requireNumbers);
   }
@@ -82,34 +71,24 @@ let typeCharacterSelection = function() {
   //Require special characters
   requireSpecChar = window.confirm('Do you require special characters?')
   if (requireSpecChar){
-    //requireSpecChar = specialCharacters[Math.floor(Math.random()*(specialCharacters.length))];
     console.log('User requires special characters: ' + requireSpecChar);
-    //numberCharacterTypes = numberCharacterTypes + 1;
   } else {
     console.log('User requires special characters: ' + requireSpecChar);
   }
   
+  //Making array of booleans
   selectionTypeChar = [requireUpperCase, requireLowerCase, requireNumbers, requireSpecChar];
-  countTrueSelections = selectionTypeChar.filter(value => value === true).length;
   console.log(selectionTypeChar);
-  console.log('Number of selected character types: ' + countTrueSelections);
 
-  findTrueResponses = (element) => element === true;
-  firstIndex = selectionTypeChar.findIndex(findTrueResponses) + 1;
-  console.log(firstIndex);
-
-  
   selectionTypeChar.forEach(function(value, index){
     if(value){
       allIndexes.push(index);
     }
   })
   console.log(allIndexes);
-  //console.log('Number of character types selected: ' + numberCharacterTypes);
+  console.log('Number of type of characters selected: ' + allIndexes.length);
 
-
-
-  if (countTrueSelections < 1){
+  if (allIndexes.length < 1){
     window.alert("You did not select any character type. Please select at least 1 character type.")
     typeCharacterSelection();
   }
@@ -124,7 +103,7 @@ let generatePassword = function(){
     console.log(randomProbability);
 
     //Only one type of characters selected
-    if (countTrueSelections === 1){
+    if (allIndexes.length === 1){
       if (requireUpperCase){
         password = password + upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
       }
@@ -140,69 +119,93 @@ let generatePassword = function(){
       console.log(password);
     }
 
-
-
     //Two types of characters selected
-
-    // else if (countTrueSelections === 2) {
-    //   for (var j = 0; j < countTrueSelections; j++){
-
-    //   findTrueResponses = (element) => element === true;
-    //   firstIndex = selectionTypeChar.findIndex(findTrueResponses) + 1;
-    // }
-
-
-    //   while (randomProbability < 1/countTrueSelections){
-    //     if (requireUpperCase){
-    //       password = password + upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
-    //     }
-    //     else if (requireLowerCase) {
-    //       password = password + lowerCaseLetters[Math.floor(Math.random()*(lowerCaseLetters.length))];
-    //     }
-    //     else if (requireNumbers){
-    //       password = password + numbers[Math.floor(Math.random()*(numbers.length))];
-    //     }
-    //   }
-    //   while (randomProbability >= 1/countTrueSelections){
-    //     if (requireLowerCase) {
-    //       password = password + lowerCaseLetters[Math.floor(Math.random()*(lowerCaseLetters.length))];
-    //     }
-    //     else if (requireNumbers){
-    //       password = password + numbers[Math.floor(Math.random()*(numbers.length))];
-    //     }
-    //     else if (requireSpecChar){
-    //       password = password + specialCharacters[Math.floor(Math.random()*(specialCharacters.length))];
-    //     }
-    //   }
-      
-    //   if (requireUpperCase){
-
-    //   }
-    //   else if (requireLowerCase){
-    //     lowerTwoSelected = 0.5;
-    //   }
-    //   else if (requireNumbers) {
-    //     numbersTwoSelected = 0.5;
-    //   }
-    // }
-
-
+    else if (allIndexes.length === 2) {
+      if (randomProbability < 0.50) {
+        if(allIndexes[0] === 0){
+          password = password + upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
+        }
+        else if(allIndexes[0] === 1){
+          password = password + lowerCaseLetters[Math.floor(Math.random()*(lowerCaseLetters.length))];
+        }
+        else if(allIndexes[0] === 2){
+          password = password + numbers[Math.floor(Math.random()*(numbers.length))];
+        }
+        else if(allIndexes[0] === 3){
+          password = password + specialCharacters[Math.floor(Math.random()*(specialCharacters.length))];
+        }
+        console.log(allIndexes[0]);
+      }
+      else if (randomProbability >= 0.50) {
+        if(allIndexes[1] === 0){
+          password = password + upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
+        }
+        else if(allIndexes[1] === 1){
+          password = password + lowerCaseLetters[Math.floor(Math.random()*(lowerCaseLetters.length))];
+        }
+        else if(allIndexes[1] === 2){
+          password = password + numbers[Math.floor(Math.random()*(numbers.length))];
+        }
+        else if(allIndexes[1] === 3){
+          password = password + specialCharacters[Math.floor(Math.random()*(specialCharacters.length))];
+        }
+        console.log(allIndexes[1]);
+      }
+      console.log(password);
+    }
 
     //Three types of characters selected
-
-
-
-
-
-
-
-
-
-
-
+    else if (allIndexes.length === 3) {
+      if (randomProbability < 1/3) {
+        if(allIndexes[0] === 0){
+          password = password + upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
+        }
+        else if(allIndexes[0] === 1){
+          password = password + lowerCaseLetters[Math.floor(Math.random()*(lowerCaseLetters.length))];
+        }
+        else if(allIndexes[0] === 2){
+          password = password + numbers[Math.floor(Math.random()*(numbers.length))];
+        }
+        else if(allIndexes[0] === 3){
+          password = password + specialCharacters[Math.floor(Math.random()*(specialCharacters.length))];
+        }
+        console.log(allIndexes[0]);
+      }
+      else if (randomProbability >= 1/3 && randomProbability < 2/3) {
+        if(allIndexes[1] === 0){
+          password = password + upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
+        }
+        else if(allIndexes[1] === 1){
+          password = password + lowerCaseLetters[Math.floor(Math.random()*(lowerCaseLetters.length))];
+        }
+        else if(allIndexes[1] === 2){
+          password = password + numbers[Math.floor(Math.random()*(numbers.length))];
+        }
+        else if(allIndexes[1] === 3){
+          password = password + specialCharacters[Math.floor(Math.random()*(specialCharacters.length))];
+        }
+        console.log(allIndexes[1]);
+      }
+      else if (randomProbability >= 2/3) {
+        if(allIndexes[2] === 0){
+          password = password + upperCaseLetters[Math.floor(Math.random()*upperCaseLetters.length)];
+        }
+        else if(allIndexes[2] === 1){
+          password = password + lowerCaseLetters[Math.floor(Math.random()*(lowerCaseLetters.length))];
+        }
+        else if(allIndexes[2] === 2){
+          password = password + numbers[Math.floor(Math.random()*(numbers.length))];
+        }
+        else if(allIndexes[2] === 3){
+          password = password + specialCharacters[Math.floor(Math.random()*(specialCharacters.length))];
+        }
+        console.log(allIndexes[2]);
+      }
+      console.log(password);
+    }
 
     //Four types of characters selected
-    else if (countTrueSelections === 4) {
+    else if (allIndexes.length === 4) {
       //Selecting the type of character randomnly depending on the user's selected characters
       //For upper case it's between 0 and 0.25
       if (randomProbability < 0.25 && requireUpperCase){
@@ -226,7 +229,6 @@ let generatePassword = function(){
   return password;
 }
 
-
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
@@ -235,16 +237,14 @@ function writePassword() {
   
   //Resetting variables
   passwordLength = 0;
-  //numberCharacterTypes = 0;
-  addCharacters = 0;
   password = '';
-  passwordSelection = '';
   allIndexes = [];
+  passwordSelection = '';
 
   //Runnign the functions
-  lengthSelection();              //WORKING
-  typeCharacterSelection();       //WORKING
-
+  lengthSelection();
+  typeCharacterSelection();
+  
   var passwordSelection = generatePassword();                 //SOME BUGS
   var passwordText = document.querySelector("#password");
 

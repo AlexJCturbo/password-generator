@@ -1,6 +1,6 @@
 # JavaScript: Password Generator
 
-Create an application that generates a random password based on user-selected criteria. The app runs in the browser and features dynamically updated HTML and CSS powered by your JavaScript code. It has a clean and polished user interface and is responsive, which ensures that it adapts to multiple screen sizes.
+This application generates a random password based on user-selected criteria. The app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code. It has a clean and polished user interface and is responsive, which ensures that it adapts to multiple screen sizes.
 
 ## User Story
 
@@ -38,3 +38,25 @@ The user has to select the length (between 8 and 128 characters), as well as the
 [Password Website](https://alexjcturbo.github.io/password-generator/)
 
 [GitHub Repository](https://github.com/AlexJCturbo/password-generator)
+
+
+## Screenshot of the Website
+
+The application requests the user to set the password's length between 8 and 128 characters.
+![Prompt for length of the password](./assets/images/password01_length.jpg)
+
+
+The application sends an alert in case the password length is too short or too long.
+![Alert that the password is too long](./assets/images/password02_length.jpg)
+
+
+The application asks the user for the type of characters (upper case, lower case, number and special characters) that will be used to create the password.
+![Alert that the password is too long](./assets/images/password03_type_characters.jpg)
+
+
+The following image shows the output of the application using the four types of characters.
+![Alert that the password is too long](./assets/images/password04_generated.jpg)
+
+
+In the next image, the output of the application uses only two types of characters.
+![Alert that the password is too long](./assets/images/password05_generated.jpg)
